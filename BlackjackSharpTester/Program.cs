@@ -1,5 +1,16 @@
 ﻿using System.Diagnostics;
 using BlackjackSharp;
+using SharpNeat;
+using SharpNeat.EvolutionAlgorithm;
+using SharpNeat.Evaluation;
+using SharpNeat.Neat;
+using SharpNeat.Neat.DistanceMetrics;
+using SharpNeat.Neat.DistanceMetrics.Double;
+using SharpNeat.Neat.EvolutionAlgorithm;
+using SharpNeat.Neat.Speciation;
+using SharpNeat.Neat.Genome;
+using SharpNeat.Neat.Speciation.GeneticKMeans;
+using SharpNeat.NeuralNets.Double.ActivationFunctions;
 
 namespace BlackjackSharpTester;
 
@@ -7,46 +18,67 @@ class Program
 {
     static void Main(string[] args)
     {
-        /*IBlackjackPlayer me = new UIPlayer();
-        Hand testHand1 = new Hand();
-        Hand testHand2 = new Hand();
-        testHand1.AddCard(Card.GetRandomCard());
-        testHand1.AddCard(Card.GetRandomCard());
-        testHand2.AddCard(Card.GetRandomCard());
+        sample();
         
-        me.GetPlayerAction(testHand1, testHand2);*/
-        
-        /*
-        GameManager man = new(new UIPlayer());
-        while(true) Console.WriteLine(man.PlayGame());
-        */
+        /*var ea = EvolutionAlgorithmFactory.CreateNeatEvolAlgo_Blackjack();
+        ea.Initialise();
+        var neatPop = ea.Population;
 
-        uint runIterations = 1000000;
-        Stopwatch watch = new();
-        watch.Restart();
+        BlackjackExperimentFactory fac = new();
         
-        foreach(var userAgent in new IBlackjackPlayer[] {new RandomAction(), new StandOnly(), new Dealer()} )
+        
+        
+        for(int i = 0; i < 10_000; i++)
         {
-        Console.WriteLine($"\nDoing simulations for new thingy");
-        
-        GameManager man = new(userAgent);
-        
-        int[] results = new int[6]; 
-        for (int i = 0; i < runIterations; i++)
-        {
-            GameResult result = man.PlayGame();
-            results[(int)result]++;
-        }
+            ea.PerformOneGeneration();
+            Console.WriteLine($"{ea.Stats.Generation} {neatPop.Stats.BestFitness.PrimaryFitness} {neatPop.Stats.MeanComplexity} {ea.ComplexityRegulationMode} {neatPop.Stats.MeanFitness}");
 
-        watch.Stop();
-        Console.WriteLine($"Ran {runIterations} times in {watch.ElapsedMilliseconds} ms.");
+            if(ea.Population.Stats.BestFitness.PrimaryFitness >= 2048.0)
+            {
+                break;
+            }
+        }*/
+    }
+
+    static void sample()
+    {
+        // Define settings for NEAT
+        var neatSettings = new NeatEvolutionAlgorithmSettings();
+        neatSettings.SpeciesCount = 150;
+
+        // Define genome and population settings
+        var metaNeatGenome = MetaNeatGenome<double>.CreateAcyclic(2, 1, new LeakyReLU());
+        var distanceMetric = new EuclideanDistanceMetric();
         
-        for (int i = 0; i < results.Length; i++)
+        var speciationStrategy = new  GeneticKMeansSpeciationStrategy<double>(distanceMetric, 10);
+
+        // Create the population
+        var population = NeatPopulationFactory<double>.CreatePopulation(
+            metaNeatGenome, 
+            .1, 
+            150);
+
+        // Define an evaluator for the XOR task
+        var evaluator = new BlackjackEvaluator();
+
+        // Create the evolution algorithm
+        var evolutionAlgorithm = new NeatEvolutionAlgorithm<double>(
+            eaSettings: neatSettings,
+            evaluator: (IGenomeListEvaluator<NeatGenome<double>>)evaluator,
+            speciationStrategy: speciationStrategy,
+            population: population,
+            complexityRegulationStrategy: null,
+            reproductionSexualSettings: null,
+            reproductionAsexualSettings: null,
+            weightMutationScheme: null
+            );
+
+        // Start the evolution process
+        evolutionAlgorithm.Initialise();
+
+        for(int gen = 0; gen < 10000; gen++)
         {
-            Console.WriteLine($"{(GameResult)i}: \t{results[i]} \t {100 * (double)results[i]/(double)runIterations :F2}%");
+            Console.WriteLine($"Generation: {evolutionAlgorithm.Stats.Generation}, Best Fitness: {evolutionAlgorithm.Population.Stats.BestFitness.PrimaryFitness}");
         }
-        }
-        
-        //Console.ReadLine();
     }
 }

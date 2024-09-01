@@ -28,7 +28,7 @@ public class Card
 
     public string GetName()
     {
-        return $"The {Enum.GetName(rank.GetType(), rank)} of {Enum.GetName(suit.GetType(), suit)}";
+        return $"the {Enum.GetName(rank.GetType(), rank)} of {Enum.GetName(suit.GetType(), suit)}";
     }
 
     public override string ToString()

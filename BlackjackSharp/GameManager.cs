@@ -21,7 +21,7 @@ public class GameManager
         player = playerAgent;
     }
 
-    public GameResult PlayGame()
+    public GameResult PlayGame(bool printDealerDraws = false)
     {
         dealerHand.Reset();
         playerHand.Reset();
@@ -63,7 +63,12 @@ public class GameManager
             if (endGame || playerHand.Evaluate() > 21) break;
         }
 
-        while (dealer.GetPlayerAction(dealerHand, dealerHand) == PlayerAction.Hit) dealerHand.AddCard(Card.GetRandomCard());
+        while (dealer.GetPlayerAction(dealerHand, dealerHand) == PlayerAction.Hit)
+        {
+            Card drawnCard = Card.GetRandomCard();
+            dealerHand.AddCard(drawnCard);
+            if (printDealerDraws) Console.WriteLine($"The dealer drew {drawnCard} and is holding {dealerHand.Evaluate()} points.");
+        }
         
         if(surrendered) return GameResult.Surrendered;
         if (!doubledDown)

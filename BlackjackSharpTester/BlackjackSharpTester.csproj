@@ -11,12 +11,4 @@
       <ProjectReference Include="..\BlackjackSharp\BlackjackSharp.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="SharpNeat" Version="4.1.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="experiments-config\" />
-    </ItemGroup>
-
 </Project>

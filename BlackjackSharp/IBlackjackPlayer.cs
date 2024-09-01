@@ -28,7 +28,8 @@ public class UIPlayer : IBlackjackPlayer
 {
     public PlayerAction GetPlayerAction(Hand playerHand, Hand dealerHand, bool surrenderable = false)
     { 
-        Console.WriteLine("\nThe cards in your hand are:");
+        Console.Clear();
+        Console.WriteLine("The cards in your hand are:");
         foreach (Card card in playerHand.GetCards()) Console.WriteLine(card);
         Console.WriteLine($"for a total of {playerHand.Evaluate()} point{(playerHand.Evaluate() > 1 ? "s" : "")}\n");
         

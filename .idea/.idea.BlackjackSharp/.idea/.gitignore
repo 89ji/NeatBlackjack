@@ -2,9 +2,15 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
+<<<<<<< HEAD
 /contentModel.xml
 /projectSettingsUpdater.xml
 /modules.xml
+=======
+/modules.xml
+/projectSettingsUpdater.xml
+/contentModel.xml
+>>>>>>> origin/master
 /.idea.BlackjackSharp.iml
 # Editor-based HTTP Client requests
 /httpRequests/

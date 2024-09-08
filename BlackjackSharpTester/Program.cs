@@ -9,10 +9,13 @@ static class Program
     static void Main(string[] args)
     {
         // Sample code for a blackjack instance
-        var agent = new UIPlayer();
+        /*var agent = new UIPlayer();
         var bjMan = new GameManager(agent);
         var result = bjMan.PlayGame(true);
         
-        Console.WriteLine(result);
+        Console.WriteLine(result);*/
+
+        QLearner qlearner = new();
+        
     }
 }

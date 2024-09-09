@@ -12,7 +12,7 @@ public class BlackJackEvaluatorScheme : IPhenomeEvaluationScheme<IBlackBox<doubl
 
 	public bool TestForStopCondition(FitnessInfo fitnessInfo)
 	{
-		return fitnessInfo.PrimaryFitness >= 10000;
+		return fitnessInfo.PrimaryFitness >= 48;
 	}
 
 	public bool IsDeterministic { get; } = false;

@@ -83,8 +83,8 @@ public static class NeatMain
 		{
 			counter++;
 			ea.PerformOneGeneration();
-			Console.WriteLine($"Current Generation: {ea.Stats.Generation:N0}, Peak Fitness: {ea.Population.BestGenome.FitnessInfo.PrimaryFitness:F1}, Peak Complexity {ea.Population.Stats.BestComplexity:F2}");
-			if (counter % 10 == 0)
+			Console.WriteLine($"Current Generation: {ea.Stats.Generation:N0}, Peak Fitness: {ea.Population.BestGenome.FitnessInfo.PrimaryFitness:F1}, Peak Complexity {ea.Population.Stats.BestComplexity:F2}, Current Mode: {ea.ComplexityRegulationMode}");
+			if (counter % 25 == 0)
 			{
 				counter = 0;
 				SaveToFolder(population);

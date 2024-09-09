@@ -1,7 +1,6 @@
-﻿using System;
-using BlackjackLearnerVisualizer.Blackjack.Enums;
+﻿using BlackjackSharp.Enums;
 
-namespace BlackjackLearnerVisualizer.Blackjack.Types;
+namespace BlackjackSharp.Types;
 
 public class Card
 {

@@ -1,4 +1,4 @@
-﻿namespace BlackjackLearnerVisualizer.Blackjack.Enums;
+﻿namespace BlackjackSharp.Enums;
 
 public enum Suit
 {

@@ -1,9 +1,8 @@
-﻿using System;
-using BlackjackLearnerVisualizer.Blackjack.Enums;
-using BlackjackLearnerVisualizer.Blackjack.Types;
-using BlackjackSharp;
+﻿using BlackjackSharp.Enums;
+using BlackjackSharp.Players;
+using BlackjackSharp.Types;
 
-namespace BlackjackLearnerVisualizer.Blackjack.Managers;
+namespace BlackjackSharp.Managers;
 
 // A class that lets you play the game without a blackjackplayer thingy
 public class GamePlayer

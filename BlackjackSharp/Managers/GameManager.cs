@@ -1,8 +1,8 @@
-﻿using System;
-using BlackjackLearnerVisualizer.Blackjack.Enums;
-using BlackjackLearnerVisualizer.Blackjack.Types;
+﻿using BlackjackSharp.Enums;
+using BlackjackSharp.Players;
+using BlackjackSharp.Types;
 
-namespace BlackjackSharp;
+namespace BlackjackSharp.Managers;
 
 public enum GameResult
 {

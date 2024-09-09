@@ -1,6 +1,7 @@
-﻿using BlackjackLearnerVisualizer.Blackjack.Enums;
+﻿using BlackjackSharp.Enums;
+using BlackjackSharp.Types;
 
-namespace BlackjackSharp;
+namespace BlackjackSharp.Players;
 
 public interface IBlackjackPlayer
 {

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using BlackjackLearnerVisualizer.Blackjack.Enums;
-using BlackjackLearnerVisualizer.Blackjack.Types;
+﻿using BlackjackSharp.Enums;
 
+namespace BlackjackSharp.Types;
 public class Hand
 {
     private List<Card> cards = new();

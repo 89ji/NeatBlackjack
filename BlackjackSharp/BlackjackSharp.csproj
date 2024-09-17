@@ -7,4 +7,8 @@
         <UserSecretsId>f286a799-7f91-4679-a67e-12d5e7cb3290</UserSecretsId>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="SharpNeat" Version="4.1.0" />
+    </ItemGroup>
+
 </Project>

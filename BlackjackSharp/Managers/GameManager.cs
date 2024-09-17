@@ -1,13 +1,31 @@
-﻿namespace BlackjackSharp;
+﻿using BlackjackSharp.Enums;
+using BlackjackSharp.Players;
+using BlackjackSharp.Types;
 
-// A class that lets you play the game without a blackjackplayer thingy
-public class GamePlayer
+namespace BlackjackSharp.Managers;
+
+public enum GameResult
+{
+    Won,
+    Lost,
+    DoubleWon,
+    DoubleLost,
+    Surrendered,
+    Draw
+}
+public class GameManager
 {
     readonly Hand dealerHand = new Hand();
     readonly Hand playerHand = new Hand();
     readonly IBlackjackPlayer dealer = new Dealer();
+    readonly IBlackjackPlayer player;
 
-    public void ResetGame(bool printDealerDraws = false)
+    public GameManager(IBlackjackPlayer playerAgent)
+    {
+        player = playerAgent;
+    }
+
+    public GameResult PlayGame(bool printDealerDraws = false)
     {
         dealerHand.Reset();
         playerHand.Reset();

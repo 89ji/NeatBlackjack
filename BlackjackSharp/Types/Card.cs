@@ -1,19 +1,9 @@
-﻿namespace BlackjackSharp;
+﻿using BlackjackSharp.Enums;
+
+namespace BlackjackSharp.Types;
 
 public class Card
 {
-    public enum Suit
-    {
-        Spades,
-        Hearts,
-        Diamonds,
-        Clubs
-    }
-
-    public enum Rank
-    {
-        Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King
-    }
     private static Random rng = new Random();
     public Suit suit { get; set; }
     public Rank rank { get; set; }

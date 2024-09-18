@@ -3,17 +3,17 @@
 namespace BlackjackSharp.Types;
 public class Hand
 {
-    private List<Card> cards = new();
-    public void AddCard(Card card) => cards.Add(card);
-    public bool Splittable => cards.Count == 2 && cards[0].rank == cards[1].rank;
+    private List<Rank> cards = new();
+    public void AddCard(Rank card) => cards.Add(card);
+    public bool Splittable => cards.Count == 2 && cards[0] == cards[1];
     public bool SoftHand = false;
     public int Evaluate()
     {
         int sum = 0;
         int aces = 0;
-        foreach (Card card in cards)
+        foreach (Rank card in cards)
         {
-            sum += card.rank switch
+            sum += card switch
             {
                 Rank.Ace => 0,
                 Rank.Two => 2,
@@ -30,7 +30,7 @@ public class Hand
                 Rank.King => 10,
                 _ => throw new ArgumentOutOfRangeException()
             };
-            if (card.rank == Rank.Ace) aces++;
+            if (card == Rank.Ace) aces++;
         }
 
         SoftHand = false;
@@ -47,7 +47,7 @@ public class Hand
         return sum;
     }
 
-    public List<Card> GetCards() => cards;
+    public List<Rank> GetCards() => cards;
     public void Reset()
     {
         cards.Clear();

@@ -69,7 +69,7 @@ public class GameManager
 
         while (dealer.GetPlayerAction(dealerHand, dealerHand) == PlayerAction.Hit)
         {
-            Card drawnCard = Card.GetRandomCard();
+            var drawnCard = Card.GetRandomCard();
             dealerHand.AddCard(drawnCard);
             if (printDealerDraws) Console.WriteLine($"The dealer drew {drawnCard} and is holding {dealerHand.Evaluate()} points.");
         }
